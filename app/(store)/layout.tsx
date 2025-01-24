@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider dynamic>
-      <html>
+      <html lang="en" suppressHydrationWarning>
         <body>
           <main>
             <ThemeProvider
