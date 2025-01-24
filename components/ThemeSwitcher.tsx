@@ -15,7 +15,6 @@ function ThemeSwitcher() {
     return <Button variant="secondary" size="icon" disabled={true}></Button>;
 
   const dark = theme === "dark";
-
   return (
     <div className="flex flex-row items-center">
       <Button
@@ -25,9 +24,9 @@ function ThemeSwitcher() {
         onClick={() => setTheme(dark ? "light" : "dark")}
       >
         {dark ? (
-          <BsSunFill className="hover:cursor-pointer hover:text-primary"></BsSunFill>
+          <BsSunFill className="hover:cursor-pointer hover:text-primary" />
         ) : (
-          <BsFillMoonStarsFill className="hover:cursor-pointer hover:text-primary"></BsFillMoonStarsFill>
+          <BsFillMoonStarsFill className="hover:cursor-pointer hover:text-primary" />
         )}
       </Button>
     </div>

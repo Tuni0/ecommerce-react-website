@@ -2,7 +2,7 @@
 import { ClerkLoaded, SignInButton, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
-import ThemeSwitcher from "../components/ThemeSwitcher";
+import ThemeSwitcher from "./ThemeSwitcher";
 import { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -10,36 +10,40 @@ import { motion } from "framer-motion";
 import { BsHeart, BsBasket } from "react-icons/bs";
 import { Input } from "../components/ui/input";
 import Form from "next/form";
+import { TrolleyIcon } from "@sanity/icons";
 
 export default function Header() {
-  const user = useUser();
-
+  const { user } = useUser();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const num = 0; // Replace with actual basket count
 
   return (
-    <div id="home">
+    <div
+      id="home"
+      className="sticky top-4 z-10 bg-gray-100/70 dark:bg-neutral-800/70 backdrop-blur-sm rounded-3xl"
+    >
       <header className="header">
         <nav
           aria-label="Global"
           className="mx-auto flex items-center justify-between p-6 lg:px-8"
         >
-          <div className="flex lg:flex-1">
-            <span className="sr-only">Your Company</span>
-            <img
-              alt=""
-              src="https://tailwindui.com/plus/img/logos/mark.svg?color=violet&shade=500 dark:https://tailwindui.com/plus/img/logos/mark.svg?color=violet&shade=600"
-              className="h-8 w-auto"
-            />
-          </div>
+          <Link href="/" className="flex lg:flex-1">
+            <p>Logo</p>
+            <span className="sr-only">Ksiazkoteka</span>
+          </Link>
+
           <div>
             <Form
               action="/search"
-              className="w-full sm:w-auto sm:flex-1 sm:mx-4 mt-2 sm:mt-0"
+              className="w-full sm:auto sm:flex-1 sm:mx-4 mt-2 sm:mt-0"
             >
-              <Input type="text" name="query" placeholder="Search"></Input>
+              <Input
+                type="text"
+                name="query"
+                placeholder="Search for books"
+              ></Input>
             </Form>
           </div>
+
           <div className="flex lg:hidden">
             <button
               type="button"
@@ -75,40 +79,48 @@ export default function Header() {
           <div className="hidden lg:flex lg:justify-end pr-8">
             <ThemeSwitcher />
           </div>
+
           <div className="hidden lg:flex lg:justify-end pr-8">
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-200 dark:text-white dark:hover:bg-zinc-800 font-abeezee"
+            <Link
+              href="/favourities"
+              className="-mx-3 block rounded-lg px-3 py-2 text-base/7  text-gray-900 hover:bg-gray-200 dark:text-white dark:hover:bg-zinc-800 "
             >
               <div className="flex flex-row items-center">
-                <Link href="/favourites">
-                  <span className="pr-4">Favourites</span>
-                </Link>
+                <span className="pr-4">Favourites</span>
                 <BsHeart className="text-xl" />
               </div>
-            </motion.button>
+            </Link>
           </div>
+
+          <div className="hidden lg:flex lg:justify-end pr-8">
+            <Link
+              href="/favourities"
+              className="-mx-3 block rounded-lg px-3 py-2 text-base/7  text-gray-900 hover:bg-gray-200 dark:text-white dark:hover:bg-zinc-800 "
+            >
+              <div className="flex flex-row items-center">
+                <span className="pr-4">My orders</span>
+                <BsHeart className="text-xl" />
+              </div>
+            </Link>
+          </div>
+
           <div className="hidden lg:flex lg:justify-end">
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              className="-mx-3 relative block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-200 dark:text-white dark:hover:bg-zinc-800 font-abeezee"
+            <Link
+              href="/basket"
+              className="-mx-3 relative block rounded-lg px-3 py-2 text-base/7  text-gray-900 hover:bg-gray-200 dark:text-white dark:hover:bg-zinc-800 "
             >
               <div className="flex flex-row items-center">
                 <span className="pr-4">Basket</span>
-                <BsBasket className="text-xl" />
-                {num != 0 && <p className="pl-2">({num})</p>}
+                <TrolleyIcon className="text-xl" />
+                {false && <p className="pl-2"></p>}
               </div>
-              {num != 0 && (
+              {false && (
                 <span className="absolute top-0 right-0 flex h-3 w-3">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
                 </span>
               )}
-            </motion.button>
+            </Link>
           </div>
         </nav>
         <Dialog
@@ -174,9 +186,9 @@ export default function Header() {
                     <div className="flex flex-row items-center">
                       <span className="pr-4">Basket</span>
                       <BsBasket className="text-xl" />
-                      {num != 0 && <p className="pl-2">({num})</p>}
+                      {false && <p className="pl-2"></p>}
                     </div>
-                    {num != 0 && (
+                    {false && (
                       <span className="absolute top-0 right-0 flex h-3 w-3">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
