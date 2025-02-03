@@ -18,7 +18,7 @@ function ThemeSwitcher() {
   return (
     <div className="flex flex-row items-center">
       <Button
-        variant="default"
+        variant="ghost"
         size="icon"
         disabled={false}
         onClick={() => setTheme(dark ? "light" : "dark")}

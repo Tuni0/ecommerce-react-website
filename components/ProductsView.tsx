@@ -8,7 +8,7 @@ interface ProductsViewProps {
 
 const ProductsView = ({ products }: ProductsViewProps) => {
   return (
-    <div className="flex flex-col sm:flex-row gap-4">
+    <div className="w-full gap-4">
       {/*category selector*/}
       <div className="w-full sm:w-[200px]">
         {/*<CategorySelectorComponent categories={categories}*/}

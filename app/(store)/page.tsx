@@ -1,6 +1,7 @@
 import { getAllProducts } from "@/sanity/lib/products/getAllProducts";
 import { getAllCategories } from "@/sanity/lib/products/getAllCategories";
 import ProductsView from "@/components/ProductsView";
+import BlackFridayBanner from "@/components/BlackFridayBanner";
 
 export default async function Home() {
   const products = await getAllProducts();
@@ -12,7 +13,7 @@ export default async function Home() {
   );
   return (
     <div className="min-h-screen p-8 pb-20 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <p className="text-center">Hello 123</p>
+      <BlackFridayBanner />
 
       <div className="flex flex-col items-center justify-top min-h-screen bg-grey-100 p-4 w-full">
         <ProductsView products={products} categories={categories} />
